@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Book Genre Quiz</title>
+<style>
+
+body {
+background-color: white;
+font-family: Arial;
+background-image: url("writing.jpg");
+background-repeat: no-repeat;
+background-size: 100% 100%;
+background-attachment: fixed;
+}
+
+#main {
+width: 80%;
+max-width: 950px;
+border: 1px gray solid;
+margin: auto;
+padding: 10px;
+background-color: white; 
+border-radius: 10px;
+}
+
+#header {
+margin-top: 0;
+border: 2px solid black;
+padding: 5px;
+height: 350px;
+background: white;
+background-image: url("library.jpg");
+background-repeat: no-repeat;
+color: black;
+}
+
+label {
+display:
+}
+
+input {
+width: 30px;
+margin-left: 20px;
+}
+
+input[type=radio] 
+
+input:checked + label img {
+  border:2px solid #00f;
+}
+
+h2 {
+clear: both;
+padding-top: 20px;
+}
+
+button {
+width: 100px;
+margin-top: 20px;
+}
+
+
+
+</style>
+
+
+
+</head>
+<body>
+<div id="main"><!-- open main div -->
+<div id="header"><!-- open header div -->
+
+</div><!-- close header div -->
+
+<h1>Are you a Fiction or Non-Fiction Bookworm Quiz</h1>
+<form id="form1" action=" ">
+
+<h2>Which do you prefer?</h2>
+
+<input name="topic" type="radio" value="sp" />Current Events<br />
+<input name="topic" type="radio" value="dt" />Thrillers<br />
+<input name="topic" type="radio" value="yh" />Biographies<br />
+<input name="topic" type="radio" value="vn" />Classics<br />
+
+<h2>What do you prefer to read?</h2>
+<input name="cover" type="radio" value="sp" />Hardcovers<br />
+<input name="cover" type="radio" value="vn" />Paperbacks<br />
+<input name="cover" type="radio" value="dt" />Ebooks<br />
+<input name="cover" type="radio" value="yh" />Magazines<br />
+
+
+
+<h2>What's your favorite quote</h2>
+<p>
+<input name="quote" type="radio" value="dt" />"Beauty is rarely soft or consolatory. Quite the contrary. Genuine beauty is always quite alarming," - Donna Tartt<br />
+<input name="quote" type="radio" value="yh" />"Ideas change the world only when they change our behavior," - Yuval Noah Harari<br />
+<input name="quote" type="radio" value="vn" />"If something is worth dying for, then you've got a reason to live," - Viet Thanh Nguyen<br />
+<input name="quote" type="radio" value="sp"/>"We will never have a perfect world, but it's not romantic or naive to work toward a better one,"- Steven Pinker <br />
+
+</p>
+
+
+<h2>Pick an author</h2>
+  <label> <input name="author" type="radio" value="vn" /> <img src="nguyen.jpg" width="150"></label>
+
+  <label> <input name="author" type="radio" value="sp" /> <img src="stevenpinker.jpg" width="160"></label>
+
+  <label> <input name="author" type="radio" value="dt" /> <img src="tartt.jpg" width="180"></label>
+
+   <label> <input name="author" type="radio" value="yh" /> <img src="harari.jpg" width="200"></label>
+
+
+
+
+
+
+<h2>Which library best describes you?</h2>
+ <label> <input name="libraries" type="radio" value="sp" /> <img src="library2.jpg" width="320"></label>
+ <label> <input name="libraries" type="radio" value="vn" /> <img src="library1.jpg" width="360"></label>
+
+  
+
+
+     
+<p><button type="submit" value="Submit">Submit</button></p>
+
+
+</form>
+<p id="answer"></p>
+<p id="answer2"></p>
+<p id="answer3"></p>
+<p id="answer4"></p>
+<p id="answer5"></p>
+</div><!-- close main div -->
+
+<script>
+document.getElementById("form1").onsubmit=function() {
+
+       topic = parseInt(document.querySelector('input[name = "topic"]:checked').value);
+	   cover = parseInt(document.querySelector('input[name = "cover"]:checked').value);
+	   quote = parseInt(document.querySelector('input[name = "quote"]:checked').value);
+	   author = parseInt(document.querySelector('input[name = "author"]:checked').value);
+	   libraries = parseInt(document.querySelector('input[name = "libraries"]:checked').value);
+
+	  
+	   sp = 0;
+	   vn = 0;
+	   dt = 0;
+	   yh = 0;
+
+function eachscore(x){
+	   if (x == "sp") {sp = sp + 1}
+	   if (x == "vn") {vn = vn + 1}
+	   if (x == "dt") {dt = dt + 1}
+	   if (x == "yh") {yh = yh + 1} 
+	}
+	
+
+eachscore(eval("topic"));
+eachscore(eval("cover"));
+eachscore(eval("quote"));
+eachscore(eval("author"));
+eachscore(eval("libraries"));
+
+all = [sp,vn,dt,yh];
+
+maxscore = Math.max.apply(Math,all);
+
+	 for(i=0; i<all.length; i++) {
+    if(all[i]==maxscore) {
+    highest = i;
+	  }
+	  }
+
+scores = [{index:0, feedback: "<b><center>You're a Fiction Fan!<b><br /><b> This is Viet Thanh Nguyen read some of his books: The Sympathizer and The Refugees </b><br /><img src ='nguyen.jpg' width='250' /></center>"},
+{index:1, feedback: "<b><center>You're a Non-Fiction Fan!</b><br /><b> This is Yuval Noah Harari read some of his books: Sapiens, Homo Deus and 21 Lessons for the 21st Century</b><br /><img src ='harari.jpg' width='250' /></center>"},
+{index:2, feedback: "<b><center>You're a Fiction Fan!</b><br /><b> This is Donna Tartt read some of her books: The Goldfinch and The Secret History</b><br /><img src ='tartt.jpg' width='250' /></center>"},
+{index:3, feedback: "<b><center>You're a Non-Fiction Fan!<b><br /> <b> This is Steven Pinker read some of his books: Better Angels of Our Nature and Enlightenment Now</b><br /><img src ='stevenpinker.jpg' width='250' /></center>"}
+
+
+
+];
+
+
+for(i=0;i<scores.length; i++) {
+ if(highest == scores[i].index) { 
+ document.getElementById("answer5").innerHTML = scores[i].feedback;}
+
+
+}
+return false; // required to not refresh the page; just leave this here
+} //this ends the submit function
+
+</script>
+
+
+
+
+
+</body>
+</html>
